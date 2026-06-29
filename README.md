@@ -8,6 +8,8 @@ Hệ thống giả lập luồng video RTSP từ OBS Virtual Camera hoặc Webca
 3. **FFmpeg:** Tải về , giải nén bỏ vào root của dự án. Đổi tên thành ffmpeg (https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-8.0.1-essentials_build.zip)
 
 **Đảm bảo cây dự án:**
+
+```cmd
 ui_virtual_camera/
 │
 ├── ffmpeg/
@@ -15,6 +17,7 @@ ui_virtual_camera/
 │       └── ffmpeg.exe
 │
 └── ui_virtual_camera.py
+```
 
 ## Hướng Dẫn Setup Cài Đặt
 Khi vừa clone dự án này về máy, hãy chạy lần lượt các lệnh sau trên Terminal:
