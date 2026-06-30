@@ -4,10 +4,13 @@ import cv2
 import subprocess
 from PIL import Image, ImageTk
 from pathlib import Path
+import socket
 
 BASE_DIR = Path(__file__).resolve().parent
 FFMPEG_PATH = BASE_DIR / "ffmpeg" / "bin" / "ffmpeg.exe"
 
+
+    
 class RTSPPublisherApp:
     def __init__(self, root):
         self.root = root
@@ -47,7 +50,23 @@ class RTSPPublisherApp:
         self.video_label = tk.Label(root, bg="black", width=500, height=375)
         self.video_label.pack(pady=10)
         
+    def is_rtsp_server_running(self, host="127.0.0.1", port=8554, timeout=1):
+        try:
+            sock = socket.create_connection((host, port), timeout=timeout)
+            sock.close()
+            return True
+        except:
+            return False
+            
     def start_stream(self):
+        if not self.is_rtsp_server_running():
+            messagebox.showerror(
+                "MediaMTX chưa chạy",
+                "Không tìm thấy RTSP Server tại localhost:8554\n\n"
+                "Hãy mở MediaMTX trước khi phát sóng."
+            )
+            return
+
         cam_idx = int(self.cam_index.get())
         url = self.rtsp_url.get()
         
